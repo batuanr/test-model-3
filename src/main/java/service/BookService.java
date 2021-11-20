@@ -13,6 +13,7 @@ import java.util.List;
 public class BookService implements IBookService{
     public static final String SELECT_FROM_BOOK = "select * from Book";
     public static final String SELECT_FROM_BOOK_WHERE_ID = "select * from Book where id = ?";
+    public static final String SELECT_FROM_BOOK_WHERE_NAME = "select * from Book where name = ?";
     Connection connection = ConnectionSingleton.getConnection();
     @Override
     public List<Book> getAll() {
@@ -57,7 +58,7 @@ public class BookService implements IBookService{
     public List<Book> findByName(String name) {
         List<Book> bookList = new ArrayList<>();
         try {
-            PreparedStatement statement = connection.prepareStatement("select * from Book where name = ?");
+            PreparedStatement statement = connection.prepareStatement(SELECT_FROM_BOOK_WHERE_NAME);
             statement.setString(1, name);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
