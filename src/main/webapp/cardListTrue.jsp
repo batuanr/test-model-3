@@ -19,6 +19,7 @@
             <th>Student Name</th>
             <th>Ngày mượn</th>
             <th>Ngày trả</th>
+            <th>Delete</th>
         </tr>
         <c:forEach var="B" items="${list}">
             <tr>
@@ -27,6 +28,9 @@
                 <td><c:out value="${B.student.name}"/></td>
                 <td><c:out value="${B.borrowedDate}"/></td>
                 <td><c:out value="${B.returnDate}"/></td>
+                <td>
+                    <a href="deleteCard?id=${B.id}">delete</a>
+                </td>
             </tr>
         </c:forEach>
     </table>

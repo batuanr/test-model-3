@@ -20,7 +20,7 @@ public class CardTrue extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        showList(request, response);
+//        showList(request, response);
     }
     private void showList(HttpServletRequest request, HttpServletResponse response){
         List<Card> cardList = cardService.getCardTrue();

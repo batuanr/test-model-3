@@ -14,9 +14,9 @@
     <h2>
         <a href="/cardTrue">List Card True</a>
     </h2>
-    <p><a href="/home">List</a></p>
-    <form action="/users?action=search" method="post">
-        <input type="text" name="country" placeholder="country name">
+    <p><a href="/home">List Book</a></p>
+    <form action="/search" >
+        <input type="text" name="book" placeholder="book name">
         <input type="submit" value="search">
     </form>
 </center>

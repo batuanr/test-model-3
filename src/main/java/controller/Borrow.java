@@ -32,7 +32,7 @@ public class Borrow extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         Book book = bookService.findById(id);
         request.setAttribute("book", book);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("edit.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("borrow.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -43,13 +43,18 @@ public class Borrow extends HttpServlet {
     }
     private void borrow(HttpServletRequest request, HttpServletResponse response){
         int bookId = Integer.parseInt(request.getParameter("id"));
-        String StudentName = request.getParameter("student");
+        String studentCode = request.getParameter("student");
         Book book = bookService.findById(bookId);
-        Student student = studentService.findByName(StudentName);
+        Student student = studentService.findByCode(studentCode);
         if (student == null){
-            request.setAttribute("id", bookId);
+            request.setAttribute("book", book);
+            request.setAttribute("code", studentCode);
+            request.setAttribute("mess", "code sai");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("borrow.jsp");
             try {
-                response.sendRedirect("/borrow");
+                dispatcher.forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -58,8 +63,14 @@ public class Borrow extends HttpServlet {
         String date = request.getParameter("date");
         Date returnDate = Date.valueOf(date);
         if (borrowDate.after(returnDate)){
+            request.setAttribute("book", book);
+            request.setAttribute("code", student.getCode());
+            request.setAttribute("mess", "return date sai");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("borrow.jsp");
             try {
-                response.sendRedirect("/home");
+                dispatcher.forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }

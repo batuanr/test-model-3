@@ -6,7 +6,6 @@ import java.util.Date;
 public class Card {
     private int id;
     private Book book;
-    public String code;
     private Student student;
     private Date borrowedDate;
     private Date returnDate;
@@ -36,14 +35,12 @@ public class Card {
         this.status = status;
     }
 
-    public Card(int id, Book book, String code, Student student, Date borrowedDate, Date returnDate, boolean status) {
+    public Card(int id, Book book, Student student, Date borrowedDate, Date returnDate) {
         this.id = id;
         this.book = book;
-        this.code = code;
         this.student = student;
         this.borrowedDate = borrowedDate;
         this.returnDate = returnDate;
-        this.status = status;
     }
 
     public int getId() {
@@ -95,11 +92,4 @@ public class Card {
         this.returnDate = returnDate;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
 }
